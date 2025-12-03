@@ -5,55 +5,57 @@ let textWallEl = document.getElementById("textWall")
 let helpTextEl = document.getElementById("helpText")
 let currentExerciseLine = null;
 let sets = null;
-
 let lastEnterTime = 0;
 let doubleEnterThres = 400;
-
 let inputStage = "Group";
-
 let activeGroup = null;
+
+//this is the function called when the plus button is clicked or the Enter key is pressed 
 function clickPlus() {
+    //this hides the testArea until the function is called for the first time 
     if (hiddenTextarea.style.display == ""){
         hiddenTextarea.style.display = "flex";
     }
-    if (activeGroup==null){
-       
+    if (activeGroup==null){ //if we are not in an exercise group, startGroup()
         if(textArea.value.trim() != "") {
             startGroup()
             helpTextEl.textContent=("Add Exercise Movement");
         }
     }
-    else {
-        if (inputStage==="Group"){
+    else { //if we are inside an exercise group 
+        if (inputStage==="Group"){ //if we are in an exercise group, addExercise()
             currentExerciseLine = addExercise();
-            inputStage = "sets"
+            inputStage = "sets"// change the stage
             helpTextEl.textContent=("How many sets?");
         }
         else if (inputStage==="sets"){
-            addSets();
-            inputStage = "reps"
+            addSets(); //adds the text to a variable 'sets' 
+            inputStage = "reps" // change the stage
             helpTextEl.textContent=("How many reps?");
         }
         else if (inputStage==="reps"){
-            addReps();
-            inputStage = "Group"
+            addReps(); //adds the text to a variable 'reps' and concatenates both to the exercise
+            inputStage = "Group"// back to adding an exercise inside the group
             helpTextEl.textContent=("Add Exercise Movement");
             currentExerciseLine = null;
         }
     }
-    textArea.value = "";
-    textArea.focus();
+    textArea.value = ""; //reset the textArea when run
+    textArea.focus(); 
 }
 
 function startGroup() {
     //create a div to group the exercises 
-    let newItem = textArea.value; 
+    //let newItem = textArea.value; 
     let newGroup = document.createElement("div")
     newGroup.classList.add("moveGroup");
-    newGroup.textContent = newItem;
+    newGroup.textContent = textArea.value;
     textWallEl.appendChild(newGroup);
     textArea.value = "";
     activeGroup = newGroup;
+    //create a tracking variable and a div to hold it, then append the div inside the group 
+    //if there is time under tension then create a second variable 
+    //that adds up the total reps and the time under tension in each group
 }
 
 function addExercise() {
@@ -85,7 +87,7 @@ document.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
         event.preventDefault();
         const now = Date.now(); 
-      
+      //save the time anytime Enter is pressed
       
       if (now - lastEnterTime < doubleEnterThres){
         //double enter 
