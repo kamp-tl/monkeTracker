@@ -4,7 +4,7 @@ let textArea = document.getElementById("textArea")
 let textWallEl = document.getElementById("textWall")
 let helpTextEl = document.getElementById("helpText")
 let currentExerciseLine = null;
-let pendingSets = null;
+let sets = null;
 
 let lastEnterTime = 0;
 let doubleEnterThres = 400;
@@ -68,16 +68,16 @@ function addExercise() {
 
 
 function addSets() {
-    pendingSets = textArea.value.trim();
+    sets = textArea.value.trim();
 }
 
 function addReps() {
-    let reps = textArea.value.trim();  if (currentExerciseLine && pendingSets) {
+    let reps = textArea.value.trim();  if (currentExerciseLine && sets) {
         currentExerciseLine.textContent =
-            `${pendingSets} x ${reps}  ` + currentExerciseLine.textContent;
+            `${sets} x ${reps}  ` + currentExerciseLine.textContent;
     }
 
-    pendingSets = null; // reset
+    sets = null; // reset
 }
 
 
