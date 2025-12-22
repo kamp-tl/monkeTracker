@@ -1,6 +1,11 @@
 html, body {
     background-color: #eae2b7;
 }
+body{
+    display: flex;
+    align-items: center;
+    height:100vh
+}
 #bounds {
     width:360px;
     height:780px;

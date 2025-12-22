@@ -7,9 +7,12 @@ let hiddenCase = document.getElementById("hiddenCase");
 let fixDate = new Date('2025-12-20T20:16:22.000Z')
 let today = Date.now()
 let daysSince = getDaysSince(today)
+let dayTrackEl = document.getElementById('dayTrack')
 
+dayTrackEl.textContent = `Been training for ${daysSince} days`
 
 function showRoutine() {
+
     buttonCase.style.display = "none";
     hiddenCase.style.display = "flex";
 }
@@ -21,7 +24,6 @@ function flipback() {
     buttonCase.style.display = "flex"}
 }
 
-
 function getDaysSince (today){
    let todayMilli = new Date(today).getTime()
    let difMilli = todayMilli - fixDate.getTime()
@@ -29,6 +31,3 @@ function getDaysSince (today){
    return difDays
 }
 
-let dayTrackEl = document.getElementById('dayTrack')
-dayTrackEl.textContent = `Been training for ${daysSince} days`
-console.log(daysSince)
