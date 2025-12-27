@@ -29,15 +29,21 @@
     padding: 5px;
 }
 
-#plus {
+#plus, #check {
     height: 75px;
     width: 75px;
     margin: auto 10px 10px auto; 
     border-radius: 50%;
-    align-self:flex-end;
+    align-self:center;
     background-color:#fcbf49;
 }
 
+
+#check{
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
 #back {
     margin-left: 5%;
     margin-top :auto;

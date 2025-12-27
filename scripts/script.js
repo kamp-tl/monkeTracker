@@ -4,7 +4,7 @@ let button3 = document.getElementById("button3");
 let buttonCase = document.getElementById("buttonCase");
 let hiddenCase = document.getElementById("hiddenCase");
 
-let fixDate = new Date('2025-09-19T20:16:22.000Z')
+let fixDate = new Date('2025-12-01T16:51:19.000Z')
 let today = Date.now()
 let daysSince = getDaysSince(today)
 let dayTrackEl = document.getElementById('dayTrack')

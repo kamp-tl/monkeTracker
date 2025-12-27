@@ -11,6 +11,7 @@ let inputStage = "Group";
 let activeGroup = null;
 let createTextEl = document.getElementById('helpCreateHeader')
 let createPEl = document.getElementById('helpCreateP')
+let checkButton = document.getElementById('check')
 
 //this is the function called when the plus button is clicked or the Enter key is pressed
 function clickPlus() {
@@ -18,6 +19,7 @@ function clickPlus() {
   if (hiddenTextarea.style.display == "") {
     hiddenTextarea.style.display = "flex";
     textArea.focus();
+    checkButton.style.display = 'flex'
   }
   if (activeGroup == null && textArea.value != "") {
     //if we are not in an exercise group and there is a value of textArea, start a group
@@ -50,6 +52,16 @@ function clickPlus() {
   }
   textArea.value = ""; //reset the textArea when run
   textArea.focus();
+}
+
+function clickCheck() {
+  if (hiddenTextarea.style.display == 'flex'){
+    hiddenTextarea.style.display = ''
+  }
+  else if(hiddenTextarea.style.display == '') {
+    let difRate = prompt('How hard was your workout?')
+    // window.location.reload()
+  }
 }
 
 function startGroup() {
