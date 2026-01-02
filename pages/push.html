@@ -14,15 +14,17 @@
 </head>
 <body>
     <div id="bounds">
-        <form id="actionForm">
-            <p>Are you ready to workout?</p> <label>Yes<input required type="checkbox" name="y/n"/></label>
+        <h1 id='helpCreateHeader' class="help-create">Create Your Workout</h1>
+        <div id="textWall"></div>
+        <div id='helpCreateP' class ='help-create'>
+            <p>Press Enter or +</p>
+        </div><form id="actionForm">
+            <p>Are you ready to workout?</p>
+            <label>Yes<input required type="checkbox" name="y/n"/></label>
             <!-- html validation  -->
             <label>No<input type="checkbox" name = "y/n"/></label>
             <input type="submit" value="Submit">
         </form>
-        <h1 id='helpCreateHeader' class="help-create">Create Your Workout</h1>
-        <div id="textWall"></div>
-        <div id='helpCreateP' class ='help-create'><p>Press Enter or +</p></div>
         <div id="spacer"></div>
         <section id="hiddenTextarea">
             <p id="helpText" style="margin-left:15px;margin-bottom: -10px;">Add Movement Group</p>

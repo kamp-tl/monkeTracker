@@ -139,7 +139,8 @@ checkboxes.forEach(function(currentBox) {
 })
 
 actionForm.addEventListener('submit', (e) =>{actionForm.style.display = 'none'
-e.preventDefault()} 
+e.preventDefault()
+createPEl.style.display = 'flex'} 
 )
 
 document.addEventListener("keydown", function (event) {
