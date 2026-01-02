@@ -18,6 +18,9 @@ let actionForm = document.getElementById('actionForm')
 
 //this is the function called when the plus button is clicked or the Enter key is pressed
 function clickPlus() {
+  if (checkButton.style.display == 'flex'){
+    checkButton.textContent = '✓'
+  }
   //this hides the textArea and the checkButton until the function is called for the first time
   if (hiddenTextarea.style.display == "") {
     hiddenTextarea.style.display = "flex";

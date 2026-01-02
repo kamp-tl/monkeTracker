@@ -23,7 +23,7 @@ html, body {
 }
 
 #textArea {
-    height:150px;
+    height:120px;
     width: 300px;
     margin:5%;
     background-color: transparent;
@@ -37,10 +37,20 @@ html, body {
     height: 75px;
     width: 75px;
     margin: auto 10px 10px auto; 
-    border-radius: 50%;
+    border-radius: 25%;
     align-self:center;
     background-color:#fcbf49;
 }
+
+input[type='submit'] {
+    border-radius: 10%;
+    background-color:#fcbf49;
+}
+
+input[type='checkbox'] {
+    accent-color:#fcbf49
+}
+
 
 
 #check{
@@ -65,7 +75,7 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size:x-large;
+    font-size:large;
     text-transform: capitalize;
 }
 
@@ -120,6 +130,5 @@ html, body {
 }
 
 form {
-    position: absolute;
     align-self: center;
 }
