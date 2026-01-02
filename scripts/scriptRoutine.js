@@ -111,7 +111,7 @@ function addReps() {
 }
 
 function backButton () {
-console.log('hi')
+window.location.href = '../index.html'
 }
 
 document.addEventListener("keydown", function (event) {
