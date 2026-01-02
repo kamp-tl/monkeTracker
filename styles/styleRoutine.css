@@ -120,5 +120,6 @@ html, body {
 }
 
 form {
-    text-align: center;
+    position: absolute;
+    align-self: center;
 }

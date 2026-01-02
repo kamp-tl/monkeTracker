@@ -62,7 +62,7 @@ function clickCheck() {
   if (hiddenTextarea.style.display == 'flex'){
     hiddenTextarea.style.display = ''
     createPEl.style.display = 'none'
-    checkButton.textContent = 'completed workout'
+    checkButton.textContent = 'complete!'
   }
   else if(hiddenTextarea.style.display == '') {
     let difRate = prompt('How hard was your workout 1-10?')
@@ -72,14 +72,13 @@ function clickCheck() {
 
 function startGroup() {
   //create a div to group the exercises
-  //let newItem = textArea.value;
-  let newGroup = document.createElement("div"); // createElement()
+  let newGroup = document.createElement("div"); 
   newGroup.classList.add("moveGroup");
   let newName = document.createElement('p')
   newName.classList.add('groupName')
   newName.textContent = textArea.value;
   newGroup.append(newName)
-  textWallEl.appendChild(newGroup); // appendChild()
+  textWallEl.appendChild(newGroup);
   textArea.value = "";
   activeGroup = newGroup;
   //create a tracking variable and a div to hold it, then append the div inside the group
@@ -117,7 +116,7 @@ window.location.href = '../index.html' //bom
 // JS validation
 function validateText(){ 
   let value = textArea.value.trim()
-  let pattern = /^[a-zA-Z ]+$/
+  let pattern = /^[a-zA-Z0-9 ]+$/
   return pattern.test(value)
 }
 
