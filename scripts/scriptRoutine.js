@@ -7,6 +7,7 @@ const helpTextEl = document.getElementById("helpText");
 const createTextEl = document.getElementById('helpCreateHeader')
 const createPEl = document.getElementById('helpCreateP')
 const checkButton = document.getElementById('check')
+const favPulse = document.getElementById('favPulse')
 //required global variables 
 let currentExerciseLine;
 let lastEnterTime = 0;
@@ -33,7 +34,6 @@ function clickPlus() { //this is the function called when the plus button is cli
       createTextEl.style.display = 'none'
       createPEl.style.display = 'none'
       helpTextEl.textContent = "Add Exercise Movement";
-      inputStage = 'Group'
     }
   } else {//if we are inside an exercise group
     if (inputStage === "Group" && textArea.value != ""&& validateText() == true) {
@@ -85,6 +85,7 @@ function startGroup() {
   textArea.value = "";
   activeGroup = newGroup;
   actionForm.style.display = 'none'
+  favPulse.style.display = 'none'
   //create a tracking variable and a div to hold it, then append the div inside the group
   //if there is time under tension then create a second variable
   //that adds up the total reps and the time under tension in each group
@@ -142,6 +143,7 @@ checkboxes.forEach(function(currentBox) {
 })
 
 actionForm.addEventListener('submit', (e) =>{actionForm.style.display = 'none'
+favPulse.style.display = 'none'
 e.preventDefault()
 createPEl.style.display = 'flex'} 
 )
