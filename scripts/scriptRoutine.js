@@ -41,10 +41,12 @@ function clickPlus() { //this is the function called when the plus button is cli
       currentExerciseLine = addExercise();
       inputStage = "sets"; // change the stage
       helpTextEl.textContent = "How many sets?";
+      createPEl.style.display = 'none'
     } else if (inputStage === "sets" && textArea.value != "" && validateNum() == true) {
       addSets(); //adds the text to a variable 'sets'
       inputStage = "reps"; // change the stage
       helpTextEl.textContent = "How many reps?";
+      createPEl.style.display = 'none'
     } else if (inputStage === "reps" && textArea.value != ""&& validateNum() == true) {
       addReps(); //adds the text to a variable 'reps' and concatenates both to the exercise
       inputStage = "Group"; // back to adding an exercise inside the group
