@@ -69,7 +69,7 @@ function clickCheck() {
   }
   else if(hiddenTextarea.style.display == '') {
     let difRate = prompt('How hard was your workout 1-10?')
-    window.location.reload() //bom
+    //window.location.reload() //bom
   }
 }
 
@@ -108,8 +108,14 @@ function addSets() {
 function addReps() {
   let reps = textArea.value.trim();
   if (currentExerciseLine && sets) {
+    if(sets == 1){
+      currentExerciseLine.textContent =
+      `${reps}  ` + currentExerciseLine.textContent;
+    }
+    else {
     currentExerciseLine.textContent =
-      `${sets} x ${reps}  ` + currentExerciseLine.textContent;
+      `${sets} x ${reps}  ` + currentExerciseLine.textContent; 
+    }
   }
 
   sets = null; // reset
@@ -127,7 +133,7 @@ function validateText(){
 
 function validateNum(){
   let value = textArea.value.trim()
-  let pattern = /^[0-9]+s?$/
+  let pattern = /^[0-9]+[sm]?$/
   return pattern.test(value)
 }
 
@@ -172,3 +178,6 @@ document.addEventListener("keydown", function (event) {
     event.preventDefault();
   }
 });
+//use cloneNode() by creating a nonvisible <template> in html for each exercise line
+  //addExercise() would clone the template, edit the clone, then append to the moveGroup 
+  //my way works but that's how I would snag that 2% ^
