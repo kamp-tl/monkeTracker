@@ -62,8 +62,7 @@ function clickPlus() { //when the plus button is clicked or the Enter key is pre
   textArea.focus();
 }
 
-function clickCheck() {
-  //hides the textarea or prompts difficulty
+function clickCheck() {  //hides the textarea or prompts difficulty
   if (hiddenTextarea.style.display == 'flex'){
     hiddenTextarea.style.display = ''
     createPEl.style.display = 'none'
