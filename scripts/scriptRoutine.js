@@ -1,6 +1,7 @@
+
 //elements from the document 
-const plusButton = document.getElementById("plus"); // .getElementById() 5%
-const hiddenTextarea = document.querySelector('section') // .querySelector() 5%
+const plusButton = document.getElementById("plus"); // .getElementById() 5% ✓
+const hiddenTextarea = document.querySelector('section') // .querySelector() 5% ✓
 const textArea = document.getElementById("textArea");
 const textWallEl = document.getElementById("textWall");
 const helpTextEl = document.getElementById("helpText");
@@ -9,6 +10,7 @@ const createPEl = document.getElementById('helpCreateP')
 const checkButton = document.getElementById('check')
 const favPulse = document.getElementById('favPulse')
 const actionForm = document.getElementById('actionForm')
+const checkboxes = document.getElementsByName('y/n') 
 //global variables 
 let currentExerciseLine;
 let lastEnterTime = 0;
@@ -16,53 +18,58 @@ let doubleEnterThres = 400;
 let inputStage = "Group";
 let activeGroup;
 
-
-function clickPlus() { //when the plus button is clicked or the Enter key is pressed
+//run when the plus button is clicked or the Enter key is pressed
+function clickPlus() { 
   if (checkButton.style.display == 'flex'){ //if the checkButton is visible 
-    checkButton.textContent = '✓' //modifying textContent 10%
+    checkButton.textContent = '✓' //modifying textContent 10% ✓
   }
   //hide the textArea and the checkButton until the function is called for the first time
-  if (hiddenTextarea.style.display == "") { //style property 5% interaction 3%
+  if (hiddenTextarea.style.display == "") { //style property 5% ✓ interaction 3% ✓
     hiddenTextarea.style.display = "flex";
-    hiddenTextarea.lastChild.focus //parent-child element navigation 5%
+    hiddenTextarea.lastChild.focus //parent-child element navigation 5% ✓
     checkButton.style.display = 'flex'
     createPEl.style.display = 'none'
   }
-  // not in an exercise group and there is a value of textArea, start a group
-  if (activeGroup == null && textArea.value.trim != ""&& validateText() == true) {
+  // if not in an exercise group and there is a value of textArea, start a group
+  if (activeGroup == null && textArea.value.trim != "" && validateText() == true) {
     if (textArea.value.trim() != "") {
       startGroup();
       createTextEl.style.display = 'none'
       createPEl.style.display = 'none'
       helpTextEl.textContent = "Add Exercise Movement";
     }
-  } else {// inside an exercise group
-    if (inputStage === "Group" && textArea.value != ""&& validateText() == true) {
+  } else {// if inside an exercise group
       // in an exercise group, addExercise()
-      currentExerciseLine = addExercise();
-      inputStage = "sets"; // change the stage
-      helpTextEl.textContent = "How many sets?";
-      createPEl.style.display = 'none'
-    } else if (inputStage === "sets" && textArea.value != "" && validateNum() == true) {
-      addSets(); //adds the text to a variable 'sets'
-      inputStage = "reps"; // change the stage
-      helpTextEl.textContent = "How many reps?";
-      createPEl.style.display = 'none'
-    } else if (inputStage === "reps" && textArea.value != ""&& validateNum() == true) {
-      addReps(); //adds the text to a variable 'reps' and concatenates both to the exercise
-      inputStage = "Group"; // back to adding an exercise inside the group
+      if (inputStage === "Group" && textArea.value != ""&& validateText() == true) {
+        currentExerciseLine = addExercise();
+        inputStage = "sets"; 
+        helpTextEl.textContent = "How many sets?";
+        createPEl.style.display = 'none'
+      } 
+      // after exercise addSets()
+      else if (inputStage === "sets" && textArea.value != "" && validateNum() == true) {
+        addSets(); 
+        inputStage = "reps";
+        helpTextEl.textContent = "How many reps?";
+        createPEl.style.display = 'none'
+        }
+      //after sets addReps() and back to adding an exercise inside the group
+      else if (inputStage === "reps" && textArea.value != ""&& validateNum() == true) {
+        addReps();
+        inputStage = "Group"; 
         createPEl.style.display = 'flex'
         createPEl.textContent = 'Double click Enter to create a New Group'
-        createPEl.style.margin = 'auto'
-      helpTextEl.textContent = "Add Exercise Movement";
-      currentExerciseLine = null;
+        helpTextEl.textContent = "Add Exercise Movement";
+        currentExerciseLine = null;
+      }
     }
-  }
-  textArea.value = ""; //reset the textArea when run
+  //reset the textArea  
+  textArea.value = ""; 
   textArea.focus();
 }
 
-function clickCheck() {  //hides the textarea or prompts difficulty
+//hides the textarea or prompts difficulty
+function clickCheck() {  
   if (hiddenTextarea.style.display == 'flex'){
     hiddenTextarea.style.display = ''
     createPEl.style.display = 'none'
@@ -74,14 +81,14 @@ function clickCheck() {  //hides the textarea or prompts difficulty
   }
 }
 
+//create a div to group the exercises
 function startGroup() {
-  //create a div to group the exercises
-  let newGroup = document.createElement("div"); // creating elements 5% 
+  let newGroup = document.createElement("div"); // creating elements 5% ✓
   newGroup.classList.add("moveGroup");
   let newName = document.createElement('p')
   newName.classList.add('groupName')
   newName.textContent = textArea.value;
-  newGroup.append(newName) //append thangs 5%
+  newGroup.append(newName) //append thangs 5% ✓
   textWallEl.appendChild(newGroup);
   textArea.value = "";
   activeGroup = newGroup;
@@ -92,6 +99,7 @@ function startGroup() {
   //that adds up the total reps and the time under tension in each group
 }
 
+//creates an exercise div
 function addExercise() {
   let exName = textArea.value;
   let line = document.createElement("div");
@@ -102,10 +110,11 @@ function addExercise() {
   return line;
 }
 
+//extract sets
 function addSets() {
   sets = textArea.value.trim();
 }
-
+//extract reps and display sets x reps 
 function addReps() {
   let reps = textArea.value.trim();
   if (currentExerciseLine && sets) {
@@ -122,24 +131,25 @@ function addReps() {
   sets = null; // reset
 }
 
+//just goes back to ../index.html
 function backButton () {
-window.location.href = '../index.html' //bom 2 3%
+window.location.href = '../index.html' //bom 2 3% ✓
 }
-// JS validation 5%
+
 function validateText(){ 
   let value = textArea.value.trim()
   let pattern = /^[a-zA-Z0-9 ]+$/
   return pattern.test(value)
 }
-
+// JS validation ^v  5% ✓
 function validateNum(){
   let value = textArea.value.trim()
   let pattern = /^[0-9]+[sm]?$/
   return pattern.test(value)
 }
 
-let checkboxes = document.getElementsByName('y/n') //iteration 5%
-checkboxes.forEach(function(currentBox) { //and it's html validation here 5%
+//uncheck if the other is checked //iteration 10% ✓
+checkboxes.forEach(function(currentBox) { //and there's html validation here 5% ✓
   currentBox.addEventListener('change',
   () => {
     checkboxes.forEach((checked) =>
@@ -149,12 +159,15 @@ checkboxes.forEach(function(currentBox) { //and it's html validation here 5%
   )
 })
 
-actionForm.addEventListener('submit', (e) =>{actionForm.style.display = 'none'
+//hide form on submit 
+actionForm.addEventListener('submit', (e) =>
+{actionForm.style.display = 'none'
 favPulse.style.display = 'none'
 e.preventDefault()
 createPEl.style.display = 'flex'} 
 )
-//two event listeners ^v 10%
+//two event listeners ^v 10% ✓
+//runs clickPlus and checks for double Enter
 document.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
     event.preventDefault();
@@ -179,8 +192,8 @@ document.addEventListener("keydown", function (event) {
     event.preventDefault();
   }
 });
-//it runs 10% got commits 5% got a readme 2% effort–you tell me ?%
+//it runs 10% ✓ has commits 5% ✓ has a readme 2% ✓ shows effort–you tell me 5% ?
 
 //I would use cloneNode() by creating a nonvisible <template> in html for each exercise line
   //addExercise() would clone the template, edit the clone, then append to the current moveGroup 
-  //my way works but that's how I would snag that 2% ^
+  //my way works but that's how I would snag that last 2% ?
