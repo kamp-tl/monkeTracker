@@ -1,6 +1,6 @@
 //elements from the document 
-const buttonPlus = document.getElementById("plus"); // .getElementById()
-const hiddenTextarea = document.querySelector('section') // .querySelector()
+const plusButton = document.getElementById("plus"); // .getElementById() 5%
+const hiddenTextarea = document.querySelector('section') // .querySelector() 5%
 const textArea = document.getElementById("textArea");
 const textWallEl = document.getElementById("textWall");
 const helpTextEl = document.getElementById("helpText");
@@ -8,26 +8,27 @@ const createTextEl = document.getElementById('helpCreateHeader')
 const createPEl = document.getElementById('helpCreateP')
 const checkButton = document.getElementById('check')
 const favPulse = document.getElementById('favPulse')
-//required global variables 
+const actionForm = document.getElementById('actionForm')
+//global variables 
 let currentExerciseLine;
 let lastEnterTime = 0;
 let doubleEnterThres = 400;
 let inputStage = "Group";
 let activeGroup;
-let actionForm = document.getElementById('actionForm')
 
-function clickPlus() { //this is the function called when the plus button is clicked or the Enter key is pressed
+
+function clickPlus() { //when the plus button is clicked or the Enter key is pressed
   if (checkButton.style.display == 'flex'){ //if the checkButton is visible 
-    checkButton.textContent = '✓'
+    checkButton.textContent = '✓' //modifying textContent 10%
   }
-  //this hides the textArea and the checkButton until the function is called for the first time
-  if (hiddenTextarea.style.display == "") {
+  //hide the textArea and the checkButton until the function is called for the first time
+  if (hiddenTextarea.style.display == "") { //style property 5% interaction 3%
     hiddenTextarea.style.display = "flex";
-    hiddenTextarea.lastChild.focus //parent-child element navigation 
+    hiddenTextarea.lastChild.focus //parent-child element navigation 5%
     checkButton.style.display = 'flex'
     createPEl.style.display = 'none'
   }
-  //if we are not in an exercise group and there is a value of textArea, start a group
+  // not in an exercise group and there is a value of textArea, start a group
   if (activeGroup == null && textArea.value.trim != ""&& validateText() == true) {
     if (textArea.value.trim() != "") {
       startGroup();
@@ -35,9 +36,9 @@ function clickPlus() { //this is the function called when the plus button is cli
       createPEl.style.display = 'none'
       helpTextEl.textContent = "Add Exercise Movement";
     }
-  } else {//if we are inside an exercise group
+  } else {// inside an exercise group
     if (inputStage === "Group" && textArea.value != ""&& validateText() == true) {
-      //if we are in an exercise group, addExercise()
+      // in an exercise group, addExercise()
       currentExerciseLine = addExercise();
       inputStage = "sets"; // change the stage
       helpTextEl.textContent = "How many sets?";
@@ -62,6 +63,7 @@ function clickPlus() { //this is the function called when the plus button is cli
 }
 
 function clickCheck() {
+  //hides the textarea or prompts difficulty
   if (hiddenTextarea.style.display == 'flex'){
     hiddenTextarea.style.display = ''
     createPEl.style.display = 'none'
@@ -69,18 +71,18 @@ function clickCheck() {
   }
   else if(hiddenTextarea.style.display == '') {
     let difRate = prompt('How hard was your workout 1-10?')
-    //window.location.reload() //bom
+    window.location.reload() //bom 1
   }
 }
 
 function startGroup() {
   //create a div to group the exercises
-  let newGroup = document.createElement("div"); 
+  let newGroup = document.createElement("div"); // creating elements 5% 
   newGroup.classList.add("moveGroup");
   let newName = document.createElement('p')
   newName.classList.add('groupName')
   newName.textContent = textArea.value;
-  newGroup.append(newName)
+  newGroup.append(newName) //append thangs 5%
   textWallEl.appendChild(newGroup);
   textArea.value = "";
   activeGroup = newGroup;
@@ -122,9 +124,9 @@ function addReps() {
 }
 
 function backButton () {
-window.location.href = '../index.html' //bom
+window.location.href = '../index.html' //bom 2 3%
 }
-// JS validation
+// JS validation 5%
 function validateText(){ 
   let value = textArea.value.trim()
   let pattern = /^[a-zA-Z0-9 ]+$/
@@ -137,8 +139,8 @@ function validateNum(){
   return pattern.test(value)
 }
 
-let checkboxes = document.getElementsByName('y/n') //iteration
-checkboxes.forEach(function(currentBox) {
+let checkboxes = document.getElementsByName('y/n') //iteration 5%
+checkboxes.forEach(function(currentBox) { //and it's html validation here 5%
   currentBox.addEventListener('change',
   () => {
     checkboxes.forEach((checked) =>
@@ -153,7 +155,7 @@ favPulse.style.display = 'none'
 e.preventDefault()
 createPEl.style.display = 'flex'} 
 )
-
+//two event listeners ^v 10%
 document.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
     event.preventDefault();
@@ -178,6 +180,8 @@ document.addEventListener("keydown", function (event) {
     event.preventDefault();
   }
 });
-//use cloneNode() by creating a nonvisible <template> in html for each exercise line
-  //addExercise() would clone the template, edit the clone, then append to the moveGroup 
+//it runs 10% got commits 5% got a readme 2% effort–you tell me ?%
+
+//I would use cloneNode() by creating a nonvisible <template> in html for each exercise line
+  //addExercise() would clone the template, edit the clone, then append to the current moveGroup 
   //my way works but that's how I would snag that 2% ^

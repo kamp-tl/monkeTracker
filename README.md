@@ -14,4 +14,4 @@ Double clicking enter will break you out of the group to start a new one.
 
 SBA 316 
 
-./pages/push.html and ./scripts/scriptRoutine.js should fulfill SBA 316 requirements. 
+./pages/push.html /and ./scripts/scriptRoutine.js fulfills SBA 316 requirements. this program is for writing down your regimen before a workout  
