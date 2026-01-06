@@ -17,7 +17,7 @@ let doubleEnterThres = 400;
 let inputStage = "Group";
 let activeGroup;
 
-//run when the plus button is clicked or the Enter key is pressed
+//main function runs when the plus button is clicked or the Enter key is pressed
 function clickPlus() {
   if (checkButton.style.display == "flex") {
     //if the checkButton is visible
@@ -84,8 +84,7 @@ function clickPlus() {
   textArea.value = "";
   textArea.focus();
 }
-
-//hides the textarea or prompts difficulty
+//hides the textarea or prompts difficulty when workout complete
 function clickCheck() {
   if (hiddenTextarea.style.display == "flex") {
     hiddenTextarea.style.display = "";
@@ -96,7 +95,6 @@ function clickCheck() {
     window.location.reload(); //bom 1
   }
 }
-
 //create a div to group the exercises
 function startGroup() {
   let newGroup = document.createElement("div"); // creating elements 5% ✓
@@ -111,8 +109,7 @@ function startGroup() {
   actionForm.style.display = "none";
   favPulse.style.display = "none";
 }
-
-//creates an exercise div
+//creates an exercise div that holds text
 function addExercise() {
   let exName = textArea.value;
   let line = document.createElement("div");
@@ -122,8 +119,7 @@ function addExercise() {
   activeGroup.appendChild(line);
   return line;
 }
-
-//extract sets
+//extract sets from textarea
 function addSets() {
   sets = textArea.value.trim();
 }
@@ -142,12 +138,10 @@ function addReps() {
 
   sets = null; // reset
 }
-
 //go back to ../index.html
 function backButton() {
   window.location.href = "../index.html"; //bom 2 3% ✓
 }
-
 function validateText() {
   let value = textArea.value.trim();
   let pattern = /^[a-zA-Z0-9 ]+$/;
@@ -159,8 +153,7 @@ function validateNum() {
   let pattern = /^[0-9]+[sm]?$/;
   return pattern.test(value);
 }
-
-//uncheck if the other is checked //iteration 10% ✓
+//uncheck if the other is checked // iteration 10% ✓
 checkboxes.forEach(function (currentBox) {
   //and there's html validation here 5% ✓
   currentBox.addEventListener("change", () => {
@@ -169,7 +162,6 @@ checkboxes.forEach(function (currentBox) {
     });
   });
 });
-
 //hide form on submit
 actionForm.addEventListener("submit", (e) => {
   actionForm.style.display = "none";
@@ -203,7 +195,6 @@ document.addEventListener("keydown", function (event) {
   }
 });
 //it runs 10% ✓ has commits 5% ✓ has a readme 2% ✓ shows effort–you tell me 5% ?
-
 //I would use cloneNode() by creating a <template> in html for each exercise line
 //addExercise() would clone the template, edit the clone, then append to the current moveGroup
 //my way works but that's how I would snag that last 2% ?
