@@ -19,7 +19,7 @@ input[type='submit'] {
     justify-content: space-between;
 }
 
-#hiddenTextarea {
+#hiddenText {
     display: none;
     flex-direction: column;
     justify-content: center;

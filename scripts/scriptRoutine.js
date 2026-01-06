@@ -1,6 +1,6 @@
 //elements from the document
 const plusButton = document.getElementById("plus"); // .getElementById() 5% ✓
-const hiddenTextarea = document.querySelector("section"); // .querySelector() 5% ✓
+const hiddenText = document.querySelector("section"); // .querySelector() 5% ✓
 const textArea = document.getElementById("textArea");
 const textWallEl = document.getElementById("textWall");
 const helpTextEl = document.getElementById("helpText");
@@ -24,10 +24,10 @@ function clickPlus() {
     checkButton.textContent = "✓"; //modifying textContent 10% ✓
   }
   //hide the textArea and the checkButton until the function is called for the first time
-  if (hiddenTextarea.style.display == "") {
+  if (hiddenText.style.display == "") {
     //style property 5% ✓ interaction 3% ✓
-    hiddenTextarea.style.display = "flex";
-    hiddenTextarea.lastChild.focus; //parent-child element navigation 5% ✓
+    hiddenText.style.display = "flex";
+    hiddenText.lastChild.focus; //parent-child element navigation 5% ✓
     checkButton.style.display = "flex";
     createPEl.style.display = "none";
   }
@@ -86,11 +86,11 @@ function clickPlus() {
 }
 //hides the textarea or prompts difficulty when workout complete
 function clickCheck() {
-  if (hiddenTextarea.style.display == "flex") {
-    hiddenTextarea.style.display = "";
+  if (hiddenText.style.display == "flex") {
+    hiddenText.style.display = "";
     createPEl.style.display = "none";
     checkButton.textContent = "complete!";
-  } else if (hiddenTextarea.style.display == "") {
+  } else if (hiddenText.style.display == "") {
     let difRate = prompt("How hard was your workout 1-10?");
     window.location.reload(); //bom 1
   }
@@ -153,9 +153,15 @@ function validateNum() {
   let pattern = /^[0-9]+[sm]?$/;
   return pattern.test(value);
 }
+//clear the wall 
+function clearWall() {
+  /* connects to a button that appears aside the helptext
+  wipes the textWallEl to restart
+  also hides actionForm createTextEl createPEl */
+}
 //uncheck if the other is checked // iteration 10% ✓
 checkboxes.forEach(function (currentBox) {
-  //and there's html validation here 5% ✓
+  //and there's html validation here 5% ✓ to require 'yes'
   currentBox.addEventListener("change", () => {
     checkboxes.forEach((checked) => {
       if (checked != currentBox) checked.checked = false;
