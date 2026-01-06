@@ -139,8 +139,12 @@ function addReps() {
   sets = null; // reset
 }
 //go back to ../index.html
-function backButton() {
+function clickBack() {
   window.location.href = "../index.html"; //bom 2 3% ✓
+  //rollback the input stage to the previous stage 
+    //reset activeGroup if needed
+  //pop the moveGroup from the wall or the exercise from the group 
+  //fill textarea.value with the value of the last stage  
 }
 function validateText() {
   let value = textArea.value.trim();
