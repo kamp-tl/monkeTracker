@@ -9,7 +9,7 @@ let today = Date.now()
 let daysSince = getDaysSince(today)
 let dayTrackEl = document.getElementById('dayTrack')
 
-dayTrackEl.textContent = `training for ${daysSince} days`
+dayTrackEl.textContent = `Been training for ${daysSince} days`
 
 function showRoutine() {
 
