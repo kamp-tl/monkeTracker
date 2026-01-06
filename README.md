@@ -8,10 +8,12 @@ the three pages are 1)landing index.html  2) rudimentary push.html  3) require.h
 \
 \
 the scriptRoutine.js is what I've been working on for this assignment. \
-Once you hit Enter or the plusButton on push.html, a textarea will appear and you will be prompted to enter a movement group e.g. 'heavy' or 'explosive'\
-A group is created and sent to the wallpaper, and you wiill be prompted to add exercises with following prompts for sets and reps.\
+Once you hit Enter or the plusButton on push.html, a textarea will appear
+and you will be prompted to enter a movement group e.g. 'heavy' or 'explosive'\
+A group is created and sent to the wallpaper, and you will be prompted to add exercises with following prompts for sets and reps.\
 Double clicking enter will break you out of the group to start a new one. 
 
 SBA 316 
 
-./pages/push.html /and ./scripts/scriptRoutine.js fulfills SBA 316 requirements. this program is for writing down your regimen before a workout  
+./pages/push.html /and ./scripts/scriptRoutine.js fulfills SBA 316 requirements. 
+this program is for writing down your regimen before a workout  
