@@ -108,12 +108,12 @@ function startGroup() {
   activeGroup = newGroup;
   actionForm.style.display = "none";
   favPulse.style.display = "none";
-//after running clickBack() startGroup adds the group but it's not visible!
-  console.log(newGroup) //newly created group
-  console.log(textWallEl.lastChild.textContent) //after the group is appended to the wall 
 
-  console.log(textWallEl.children)
-  console.log(activeGroup , inputStage === 'Group' , textWallEl.children.length === 1)
+  // console.log(newGroup) //newly created group
+  // console.log(textWallEl.lastChild.textContent) //after the group is appended to the wall 
+
+  // console.log(textWallEl.children)
+  // console.log(activeGroup , inputStage === 'Group' , textWallEl.children.length === 1)
   
 }
 //creates an exercise div that holds text
@@ -147,20 +147,18 @@ function addReps() {
 }
 //go back to ../index.html
 function clickBack() { // <----------------------------------------------------------------- clickBack()
-  //window.location.href = "../index.html"; //bom 2 3% ✓
+  window.location.href = "../index.html"; 
   
-  //rolls back first moveGroup //runs startGroup but doesn't populate after running
-  if (activeGroup && inputStage === 'Group' && textWallEl.children.length === 1){
-  activeGroup = null;
-  textArea.value = textWallEl.lastChild.textContent
-  console.log(textWallEl.children)
-  textWallEl.removeChild(textWallEl.lastElementChild)
-  console.log(textWallEl.children)
-  textArea.focus()
-  helpTextEl.textContent = 'Add Movement Group'
-} else {
-  window.location.href = "../index.html";
-}
+  //rolls back first moveGroup 
+//   if (activeGroup && inputStage === 'Group'){
+//   activeGroup = null;
+//   textArea.value = textWallEl.lastChild.textContent
+//   textWallEl.removeChild(textWallEl.lastElementChild)
+//   textArea.focus()
+//   helpTextEl.textContent = 'Add Movement Group'
+// } else {
+//   window.location.href = "../index.html"; //bom 2 3% ✓ 
+// }
 
 }
 function validateText() {
