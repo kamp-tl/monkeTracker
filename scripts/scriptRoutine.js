@@ -23,7 +23,7 @@ function clickPlus() {
     //if the checkButton is visible
     checkButton.textContent = "✓"; //modifying textContent 10% ✓
   }
-  //hide the textArea and the checkButton until the function is called for the first time
+  //hide the textArea helpTextEl and the checkButton until the function is called for the first time
   if (hiddenText.style.display == "") {
     //style property 5% ✓ interaction 3% ✓
     hiddenText.style.display = "flex";
@@ -31,48 +31,48 @@ function clickPlus() {
     checkButton.style.display = "flex";
     createPEl.style.display = "none";
   }
-  //if not in an exercise group and there is a value of textArea, start a group
+  
   if (
-    activeGroup == null &&
-    textArea.value.trim != "" &&
-    validateText() == true
+    activeGroup == null &&   //if not in an exercise group
+    textArea.value.trim != "" && 
+    validateText() == true 
   ) {
     if (textArea.value.trim() != "") {
-      startGroup();
+      startGroup(); // <---------------------------------------------------------------startGroup()
       createTextEl.style.display = "none";
       createPEl.style.display = "none";
       helpTextEl.textContent = "Add Exercise Movement";
     }
   } else {
-    // if inside an exercise group addExercise()
+   
     if (
-      inputStage === "Group" &&
+      inputStage === "Group" && // if inside an exercise group 
       textArea.value != "" &&
       validateText() == true
     ) {
-      currentExerciseLine = addExercise();
+      currentExerciseLine = addExercise(); //<-----------------------------------------addExercise()
       inputStage = "sets";
       helpTextEl.textContent = "How many sets?";
       createPEl.style.display = "none";
     }
-    // after exercise addSets()
+    // after exercise 
     else if (
       inputStage === "sets" &&
       textArea.value != "" &&
       validateNum() == true
     ) {
-      addSets();
+      addSets(); //<------------------------------------------------------------------------addSets()
       inputStage = "reps";
       helpTextEl.textContent = "How many reps?";
       createPEl.style.display = "none";
     }
-    //after sets addReps() and go back to adding an exercise inside the group
+    //after sets and back to exercise inside the group
     else if (
       inputStage === "reps" &&
       textArea.value != "" &&
       validateNum() == true
     ) {
-      addReps();
+      addReps(); //<-----------------------------------------------------------------------addReps()
       inputStage = "Group";
       createPEl.style.display = "flex";
       createPEl.textContent = "Double click Enter to create a New Group";
@@ -85,7 +85,7 @@ function clickPlus() {
   textArea.focus();
 }
 //hides the textarea or prompts difficulty when workout complete
-function clickCheck() {
+function clickCheck() { 
   if (hiddenText.style.display == "flex") {
     hiddenText.style.display = "";
     createPEl.style.display = "none";
@@ -108,6 +108,13 @@ function startGroup() {
   activeGroup = newGroup;
   actionForm.style.display = "none";
   favPulse.style.display = "none";
+//after running clickBack() startGroup adds the group but it's not visible!
+  console.log(newGroup) //newly created group
+  console.log(textWallEl.lastChild.textContent) //after the group is appended to the wall 
+
+  console.log(textWallEl.children)
+  console.log(activeGroup , inputStage === 'Group' , textWallEl.children.length === 1)
+  
 }
 //creates an exercise div that holds text
 function addExercise() {
@@ -139,12 +146,22 @@ function addReps() {
   sets = null; // reset
 }
 //go back to ../index.html
-function clickBack() {
-  window.location.href = "../index.html"; //bom 2 3% ✓
-  //rollback the input stage to the previous stage 
-    //reset activeGroup if needed
-  //pop the moveGroup from the wall or the exercise from the group 
-  //fill textarea.value with the value of the last stage  
+function clickBack() { // <----------------------------------------------------------------- clickBack()
+  //window.location.href = "../index.html"; //bom 2 3% ✓
+  
+  //rolls back first moveGroup //runs startGroup but doesn't populate after running
+  if (activeGroup && inputStage === 'Group' && textWallEl.children.length === 1){
+  activeGroup = null;
+  textArea.value = textWallEl.lastChild.textContent
+  console.log(textWallEl.children)
+  textWallEl.removeChild(textWallEl.lastElementChild)
+  console.log(textWallEl.children)
+  textArea.focus()
+  helpTextEl.textContent = 'Add Movement Group'
+} else {
+  window.location.href = "../index.html";
+}
+
 }
 function validateText() {
   let value = textArea.value.trim();

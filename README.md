@@ -12,3 +12,7 @@ when your regimen is fully written out, the check button hides the textarea
 when your workout is finished, the complete button will ask how hard your workout was
 
 written with HTML CSS and JS 
+
+
+currently working on implementing the back button to return to the previous inputStage 
+after running clickBack() startGroup adds the group but it's not visible!
