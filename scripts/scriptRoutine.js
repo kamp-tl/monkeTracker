@@ -108,13 +108,6 @@ function startGroup() {
   activeGroup = newGroup;
   actionForm.style.display = "none";
   favPulse.style.display = "none";
-
-  // console.log(newGroup) //newly created group
-  // console.log(textWallEl.lastChild.textContent) //after the group is appended to the wall 
-
-  // console.log(textWallEl.children)
-  // console.log(activeGroup , inputStage === 'Group' , textWallEl.children.length === 1)
-  
 }
 //creates an exercise div that holds text
 function addExercise() {
@@ -146,7 +139,7 @@ function addReps() {
   sets = null; // reset
 }
 //go back to ../index.html
-function clickBack() { // <----------------------------------------------------------------- clickBack()
+function clickBack() { // <-------------------------------------------------------------- clickBack()
   // window.location.href = "../index.html"; 
   
   //rolls back first moveGroup 
@@ -183,8 +176,8 @@ function clearWall() {
 checkboxes.forEach(function (currentBox) {
   //and there's html validation here to require 'yes' 5% ✓
   currentBox.addEventListener("change", () => {
-    checkboxes.forEach((checked) => {
-      if (checked != currentBox) checked.checked = false;
+    checkboxes.forEach((check) => {
+      if (check != currentBox) check.checked = false;
     });
   });
 });
