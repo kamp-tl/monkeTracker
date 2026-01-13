@@ -1,4 +1,4 @@
-iterative fitness tracker 
+monke Tracker 
 
 SBA 316 
 
@@ -15,4 +15,12 @@ written with HTML CSS and JS
 
 
 currently working on implementing the back button to return to the previous inputStage 
-after running clickBack() startGroup adds the group but it's not visible!
+clickBack() only works on moveGroups 
+work on error handling for sets and reps inputStages
+
+result = 0
+for x in [3,3,5]:
+    if x >= 3:
+        result = result - x
+    else:
+        result = result + x

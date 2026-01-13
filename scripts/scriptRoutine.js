@@ -147,18 +147,18 @@ function addReps() {
 }
 //go back to ../index.html
 function clickBack() { // <----------------------------------------------------------------- clickBack()
-  window.location.href = "../index.html"; 
+  // window.location.href = "../index.html"; 
   
   //rolls back first moveGroup 
-//   if (activeGroup && inputStage === 'Group'){
-//   activeGroup = null;
-//   textArea.value = textWallEl.lastChild.textContent
-//   textWallEl.removeChild(textWallEl.lastElementChild)
-//   textArea.focus()
-//   helpTextEl.textContent = 'Add Movement Group'
-// } else {
-//   window.location.href = "../index.html"; //bom 2 3% ✓ 
-// }
+  if (activeGroup && inputStage === 'Group'){
+  activeGroup = null;
+  textArea.value = textWallEl.lastChild.textContent
+  textWallEl.removeChild(textWallEl.lastElementChild)
+  textArea.focus()
+  helpTextEl.textContent = 'Add Movement Group'
+} else {
+  window.location.href = "../index.html"; //bom 2 3% ✓ 
+}
 
 }
 function validateText() {
@@ -167,6 +167,7 @@ function validateText() {
   return pattern.test(value);
 }
 // JS validation ^v  5% ✓
+ //display a help text to explain the validation 
 function validateNum() {
   let value = textArea.value.trim();
   let pattern = /^[0-9]+[sm]?$/;
@@ -180,7 +181,7 @@ function clearWall() {
 }
 //uncheck if the other is checked // iteration 10% ✓
 checkboxes.forEach(function (currentBox) {
-  //and there's html validation here 5% ✓ to require 'yes'
+  //and there's html validation here to require 'yes' 5% ✓
   currentBox.addEventListener("change", () => {
     checkboxes.forEach((checked) => {
       if (checked != currentBox) checked.checked = false;
@@ -202,7 +203,7 @@ document.addEventListener("keydown", function (event) {
     const now = Date.now();
     //save the time anytime Enter is pressed
     //double enter
-    if (now - lastEnterTime < doubleEnterThres && inputStage == "Group") {
+    if (now - lastEnterTime < doubleEnterThres && inputStage == "Group" && activeGroup.children.length != 1) {
       activeGroup = null;
       inputStage = "Group";
       currentExerciseLine = null;
