@@ -8,12 +8,16 @@ let workouts = [];
 let users = [];
 let goals = [];
 
-app.set('view engine', ejs)
+app.set('view engine', 'ejs')
 
 app.use(express.static('public'));
 app.use(express.json());
 app.use(logReq);
 app.use(checkJson);
+
+app.get('/', (req, res) => {
+    res.render('index');
+});
 
 app.get('/api/workouts', (req,res)=>{
     const { difficulty } = req.query;
