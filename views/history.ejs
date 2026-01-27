@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=TASA+Explorer:wght@400..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles/style.css"/>
     <link rel="icon" href="data:,"/>
-    <title>monkeTracker - History</title>
+    <title>Past Workouts</title>
     <script defer src="../scripts/script.js"></script>
 </head>
 <body>
@@ -17,34 +17,31 @@
             <div id="name">Past Workouts</div>
         </div>
 
-        <section id="historyCase" style="justify-content: flex-start; overflow-y: auto; padding-top: 20px;">
-            <div id="dayTrack"></div>
-            
+        <section id="historyCase">
+            <div id="dayTrack" style="margin-top:-10px"></div>
             <div id="textWall" style="width: 100%;">
                 <% if (workouts.length === 0) { %>
-                    <p class="help-create" style="margin:5px;">No workouts found, monke.</p>
+                    <p class="help-create" style="margin:2px 10px;">No workouts found, monke.</p>
                 <% } else { %>
                     <% workouts.forEach(workout => { %>
                         <div class="moveGroup">
                             
-                            <p style="font-size: 11px; font-weight: 800; margin-bottom: 5px;">
+                            <p style="font-size: 11px; font-weight: 800;">
                                 Date: <%= new Date(workout.id).toLocaleDateString() %> 
                                 @ <%= new Date(workout.id).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) %>
                             </p>
                     
                             <% Object.keys(workout.exercises).forEach(exName => { %>
-                                <p class="groupName"><strong><%= exName %></strong></p>
-                                
-                                <% /* This reaches into the nested object for sets/reps */ %>
+                                <p><strong><%= exName %></strong></p>
                                 <% const details = workout.exercises[exName]; %>
                                 <% Object.keys(details).forEach(stat => { %>
-                                    <p style="font-size: 12px; margin: 2px 0 2px 10px;">
+                                    <p style="font-size: 15px; margin: 0px;">
                                         <%= stat %>: <%= details[stat].sets %> sets, <%= details[stat].reps %> reps
                                     </p>
                                 <% }) %>
                             <% }) /* End of Exercises Loop */ %>
                             
-                            <p class="exerciseLine" style="margin-top: 10px;">Difficulty: <%= workout.difficulty %></p>
+                            <p>Difficulty: <%= workout.difficulty %></p>
                             
                             <div style="display: flex; gap: 5px; margin-top: 5px;">
                                 <button onclick="editItem('<%= workout.id %>')" style="cursor:pointer; font-size: 10px;">Edit</button>
@@ -56,7 +53,7 @@
             </div>
         </section>
 
-        <button onclick="window.location.href='/'" class="miniButton">← Back</button>
+        <button onclick="window.location.href='/'" class="miniButton"> ← Back</button>
     </div>
 </body>
 </html>
