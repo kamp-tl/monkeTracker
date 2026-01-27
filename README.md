@@ -1,26 +1,18 @@
-monke Tracker 
+monkeTracker 
 
-SBA 316 
+SBA 318 
 
-./pages/push.html /and ./scripts/scriptRoutine.js fulfills SBA 316 requirements. 
-this app is for writing down your regimen before a workout  
-the scary monkey man won't leave until you're ready to workout 
-you are first prompted to start a 'Movement Group' and then consecutively 
-prompted for an exercise, a number of sets, and a number of reps to be added to the group 
-to break out and start another group, double press the Enter key
-when your regimen is fully written out, the check button hides the textarea 
-when your workout is finished, the complete button will ask how hard your workout was
+I connected my fitness tracker project from the previous SBAs to a server. 
 
-written with HTML CSS and JS 
+Routes:
+GET /api/workouts - gets all workouts 
+POST /api/workouts - post a new workout
+PATCH /api/workouts/:id - update workout difficulty
+DELETE /api/workouts/:id - delete by id 
+DELETE /api/workouts - delete all 
 
+GET /api/users - get all users 
+GET /api/goals - get all goals 
 
-currently working on implementing the back button to return to the previous inputStage 
-clickBack() only works on moveGroups 
-work on error handling for sets and reps inputStages
-
-result = 0
-for x in [3,3,5]:
-    if x >= 3:
-        result = result - x
-    else:
-        result = result + x
+GET / - render index.html
+GET /history - shows past workouts 

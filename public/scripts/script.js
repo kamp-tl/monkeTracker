@@ -31,3 +31,23 @@ function getDaysSince (today){
    return difDays
 }
 
+
+async function deleteItem(id) {
+    if (confirm("Delete?")) {
+        await fetch(`/api/workouts/${id}`, { method: 'DELETE' });
+        location.reload();
+    }
+}
+
+async function editItem(id) {
+    let val = prompt("New Difficulty:");
+    if (val) {
+        await fetch(`/api/workouts/${id}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ difficulty: val })
+        });
+        location.reload();
+    }
+}
+

@@ -181,7 +181,7 @@ function clickBack() { // <-----------------------------------------------------
   textArea.focus()
   helpTextEl.textContent = 'Add Movement Group'
 } else {
-  window.location.href = "../index.html";
+  window.location.href = "../../";
 }
 
 }
