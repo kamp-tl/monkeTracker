@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
     res.sendFile('index.html', { workoutCount: workouts.length });
 });
 app.get('/history', (req, res) => {
-    res.render('history', { workouts: workouts });
+    res.render('history', { workouts: workouts }); //using engine
 });
 //POST workoutData 5% ✓
 app.post('/api/workouts', (req,res)=>{

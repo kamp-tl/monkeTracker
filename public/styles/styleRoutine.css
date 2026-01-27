@@ -118,6 +118,7 @@ input[type='checkbox'] {
 }
 
 #bounds {
+    position: relative;
     width:360px;
     height:780px;
     border:1px solid black;
@@ -135,7 +136,24 @@ input[type='checkbox'] {
 #favPulse {
     position: absolute;
 }
+#favPulsePull{
+    position:absolute;
+    width: 560px;
+    left: -28%;
+    transform: translateX(50%);
+    top:-75px;
 
+}
+#favPulseLegs{
+    position:absolute;
+    width: 760px;
+    left: -55%;
+    transform: translateX(50%);
+    top:-80px;
+}
+#legSpacer {
+    height:100px;
+}
 .pulsing {
     animation: pulse .5s infinite;
 }

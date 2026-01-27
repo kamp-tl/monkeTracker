@@ -16,9 +16,9 @@ DELETE /api/workouts/:id - delete by id
 
 DELETE /api/workouts - delete all 
 
-GET /api/users - get all users 
+GET /api/users - get all users // POST not implemented yet
 
-GET /api/goals - get all goals 
+GET /api/goals - get all goals // POST not implemented yet
 
 GET / - render index.html
 

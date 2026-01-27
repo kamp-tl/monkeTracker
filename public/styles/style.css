@@ -49,6 +49,7 @@ body{
     margin:25px;
     background-color: #fcbf49;
     border-radius: 10px;
+    cursor:pointer;
 }
 .miniButton {
     align-self: flex-start;
@@ -58,6 +59,7 @@ body{
     background-color: #fcbf49;
     border-radius: 5px;
     padding: 3px;
+    cursor:pointer;
 }
 /* #refresh { // clearWall() button 
     font-size: xx-large;

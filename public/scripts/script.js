@@ -10,9 +10,9 @@ let daysSince = getDaysSince(today)
 let dayTrackEl = document.getElementById('dayTrack')
 
 dayTrackEl.textContent = `Been training for ${daysSince} days`
+//eventually update daysSince to # of workouts logged 
 
 function showRoutine() {
-
     buttonCase.style.display = "none";
     hiddenCase.style.display = "flex";
 }

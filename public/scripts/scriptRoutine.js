@@ -7,12 +7,10 @@ const helpTextEl = document.getElementById("helpText");
 const createTextEl = document.getElementById("helpCreateHeader");
 const createPEl = document.getElementById("helpCreateP");
 const checkButton = document.getElementById("check");
-const favPulse = document.getElementById("favPulse");
+const favPulse = document.getElementById("favPulse") || document.getElementById("favPulseLegs") || document.getElementById("favPulsePull")
 const actionForm = document.getElementById("actionForm");
 const checkboxes = document.getElementsByName("y/n");
-let workoutData = {
-  exercises:{}
-};
+
 //global variables
 let currentExerciseLine;
 let currentExercise;
@@ -23,7 +21,10 @@ let inputStage = "Group";
 let currentGroup;
 let currentGroupName;
 let sets;
-
+let workoutData = {
+  exercises:{}
+};
+//how am I going to add push/pull/legs to the workoutData 
 //main function runs when the plus button is clicked or the Enter key is pressed
 function clickPlus() {
   if (checkButton.style.display == "flex") {
