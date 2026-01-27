@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=TASA+Explorer:wght@400..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=TASA+Explorer:wght@400..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles/style.css"/>
     <link rel="stylesheet" href="../styles/styleRoutine.css"/>
     <link rel="icon" href="../favicon.png"/>
@@ -14,7 +14,7 @@
 </head>
 <body>
     <div id="bounds">
-        <img src="../favicon.png" id="favPulse" class="pulsing">
+        <img src="../monkeman.png" id="favPulse" class="pulsing">   
         <h1 id='helpCreateHeader' class="help-create">Create Your Workout</h1>
         <div id="textWall"></div>
         <div id='helpCreateP' class ='help-create'>
@@ -22,17 +22,18 @@
         </div><form id="actionForm">
             <p>Are you ready to workout?</p>
             <label>Yes<input required type="checkbox" name="y/n"/></label>
-            <!-- html validation 5% -->
+            <!-- html validation 5% ✓ -->
             <label>No<input type="checkbox" name = "y/n"/></label>
             <input type="submit" value="Submit">
         </form>
         <div id="spacer"></div>
-        <section id="hiddenTextarea">
+        <section id="hiddenText">
             <p id="helpText" style="margin-left:15px;margin-bottom: -10px;">Add Movement Group</p>
+            <!-- <button onclick=clearWall() id="refresh">⟲</button> -->
             <textarea id="textArea"></textarea>
         </section>
         <section id="navCase">
-        <button onclick=backButton() id="back" class="button">←</button>
+        <button onclick=clickBack() id="back" class="button">←</button>
         <button onclick=clickCheck() id="check">✓</button>
         <button onclick=clickPlus() id="plus">+</button>
     </section>

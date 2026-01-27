@@ -1,6 +1,6 @@
 //elements from the document
-const plusButton = document.getElementById("plus"); // .getElementById() 5% ✓
-const hiddenText = document.querySelector("section"); // .querySelector() 5% ✓
+const plusButton = document.getElementById("plus");
+const hiddenText = document.querySelector("section");
 const textArea = document.getElementById("textArea");
 const textWallEl = document.getElementById("textWall");
 const helpTextEl = document.getElementById("helpText");
@@ -10,30 +10,36 @@ const checkButton = document.getElementById("check");
 const favPulse = document.getElementById("favPulse");
 const actionForm = document.getElementById("actionForm");
 const checkboxes = document.getElementsByName("y/n");
+let workoutData = {
+  exercises:{}
+};
 //global variables
 let currentExerciseLine;
+let currentExercise;
+let currentGroupExercises = {};
 let lastEnterTime = 0;
 let doubleEnterThres = 400;
 let inputStage = "Group";
-let activeGroup;
+let currentGroup;
+let currentGroupName;
+let sets;
 
 //main function runs when the plus button is clicked or the Enter key is pressed
 function clickPlus() {
   if (checkButton.style.display == "flex") {
     //if the checkButton is visible
-    checkButton.textContent = "✓"; //modifying textContent 10% ✓
+    checkButton.textContent = "✓";
   }
   //hide the textArea helpTextEl and the checkButton until the function is called for the first time
   if (hiddenText.style.display == "") {
-    //style property 5% ✓ interaction 3% ✓
     hiddenText.style.display = "flex";
-    hiddenText.lastChild.focus; //parent-child element navigation 5% ✓
+    hiddenText.lastChild.focus;
     checkButton.style.display = "flex";
     createPEl.style.display = "none";
   }
   
   if (
-    activeGroup == null &&   //if not in an exercise group
+    currentGroup == null &&   //if not in an exercise group
     textArea.value.trim != "" && 
     validateText() == true 
   ) {
@@ -85,38 +91,58 @@ function clickPlus() {
   textArea.focus();
 }
 //hides the textarea or prompts difficulty when workout complete
-function clickCheck() { 
-  if (hiddenText.style.display == "flex") {
+async function clickCheck() { 
+  try {
+    if (hiddenText.style.display == "flex") {
     hiddenText.style.display = "";
     createPEl.style.display = "none";
     checkButton.textContent = "complete!";
+    workoutData.exercises[currentGroupName] = currentGroupExercises;
+    console.log(workoutData)
   } else if (hiddenText.style.display == "") {
+    //workoutData.exercises[currentGroupName] = currentGroupExercises
     let difRate = prompt("How hard was your workout 1-10?");
-    window.location.reload(); //bom 1
+    workoutData.difficulty = difRate;
+    workoutData.id = Date.now();
+    console.log('Workout Data: ',workoutData)
+    const response = await fetch('/api/workouts',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:(JSON.stringify(workoutData))
+    //window.location.reload(); //bom 1
+    })
+    const result = await response.json()
+    console.log('server says: ', result.message)
   }
+} catch(err){
+  console.error('delivery failed')
+}
 }
 //create a div to group the exercises
 function startGroup() {
-  let newGroup = document.createElement("div"); // creating elements 5% ✓
+  let newGroup = document.createElement("div");
   newGroup.classList.add("moveGroup");
   let newName = document.createElement("p");
   newName.classList.add("groupName");
   newName.textContent = textArea.value;
-  newGroup.append(newName); //append thangs 5% ✓
+  newGroup.append(newName);
+  currentGroupName = textArea.value
   textWallEl.appendChild(newGroup);
   textArea.value = "";
-  activeGroup = newGroup;
+  currentGroup = newGroup;
   actionForm.style.display = "none";
   favPulse.style.display = "none";
+  currentGroupExercises = {};
 }
 //creates an exercise div that holds text
 function addExercise() {
   let exName = textArea.value;
+  currentExercise = textArea.value;
   let line = document.createElement("div");
   line.classList.add("exerciseLine");
   line.textContent = exName;
   textArea.value = "";
-  activeGroup.appendChild(line);
+  currentGroup.appendChild(line);
   return line;
 }
 //extract sets from textarea
@@ -134,23 +160,28 @@ function addReps() {
       currentExerciseLine.textContent =
         `${sets} x ${reps}  ` + currentExerciseLine.textContent;
     }
+    let exercise = {
+      sets:sets,
+      reps:reps,
+    }
+      currentGroupExercises[currentExercise]=exercise;
+      console.log(currentGroupExercises)
+      sets = null; // reset
   }
-
-  sets = null; // reset
 }
 //go back to ../index.html
 function clickBack() { // <-------------------------------------------------------------- clickBack()
   // window.location.href = "../index.html"; 
   
   //rolls back first moveGroup 
-  if (activeGroup && inputStage === 'Group'){
-  activeGroup = null;
+  if (currentGroup && inputStage === 'Group'){
+  currentGroup = null;
   textArea.value = textWallEl.lastChild.textContent
   textWallEl.removeChild(textWallEl.lastElementChild)
   textArea.focus()
   helpTextEl.textContent = 'Add Movement Group'
 } else {
-  window.location.href = "../index.html"; //bom 2 3% ✓ 
+  window.location.href = "../index.html";
 }
 
 }
@@ -159,22 +190,13 @@ function validateText() {
   let pattern = /^[a-zA-Z0-9 ]+$/;
   return pattern.test(value);
 }
-// JS validation ^v  5% ✓
  //display a help text to explain the validation 
 function validateNum() {
   let value = textArea.value.trim();
   let pattern = /^[0-9]+[sm]?$/;
   return pattern.test(value);
 }
-//clear the wall 
-function clearWall() {
-  /* connects to a button that appears aside the helptext
-  wipes the textWallEl to restart
-  also hides actionForm createTextEl createPEl */
-}
-//uncheck if the other is checked // iteration 10% ✓
 checkboxes.forEach(function (currentBox) {
-  //and there's html validation here to require 'yes' 5% ✓
   currentBox.addEventListener("change", () => {
     checkboxes.forEach((check) => {
       if (check != currentBox) check.checked = false;
@@ -188,7 +210,6 @@ actionForm.addEventListener("submit", (e) => {
   e.preventDefault();
   createPEl.style.display = "flex";
 });
-//two event listeners ^v 10% ✓
 //runs clickPlus and checks for double Enter
 document.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
@@ -196,14 +217,15 @@ document.addEventListener("keydown", function (event) {
     const now = Date.now();
     //save the time anytime Enter is pressed
     //double enter
-    if (now - lastEnterTime < doubleEnterThres && inputStage == "Group" && activeGroup.children.length != 1) {
-      activeGroup = null;
+    if (now - lastEnterTime < doubleEnterThres && inputStage == "Group" && currentGroup.children.length != 1) {
+      currentGroup = null;
       inputStage = "Group";
       currentExerciseLine = null;
       helpTextEl.textContent = "Add Movement Group";
       textArea.value = "";
       lastEnterTime = now;
       createPEl.style.display = "none";
+      workoutData.exercises[currentGroupName] = currentGroupExercises;
       return;
     } else {
       clickPlus();
@@ -213,7 +235,3 @@ document.addEventListener("keydown", function (event) {
     event.preventDefault();
   }
 });
-//it runs 10% ✓ has commits 5% ✓ has a readme 2% ✓ shows effort–you tell me 5% ?
-//I would use cloneNode() by creating a <template> in html for each exercise line
-//addExercise() would clone the template, edit the clone, then append to the current moveGroup
-//my way works but that's how I would snag that last 2% ?
