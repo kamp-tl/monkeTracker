@@ -1,7 +1,7 @@
 import express from 'express';
 import { logReq, globalErr, checkJson } from "./public/scripts/middlewares.js"; 
 // custom middleware 5% ✓ and error-handling 5% ✓
-//import ejs from 'ejs'
+import ejs from 'ejs'
 
 const app = express()
 const PORT = 3000;
