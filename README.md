@@ -4,7 +4,7 @@ SBA 318
 
 I connected my fitness tracker project from the previous SBAs to a server. 
 You can create data on push.html  pull.html and legs.html. Once you complete the workout and give it a difficulty rating, 
-it will be POSTed by /history. You can view them in the Past Workouts page.
+it will be POSTed by /api/workouts You can view them in the Past Workouts page.
 
 
 Routes:
